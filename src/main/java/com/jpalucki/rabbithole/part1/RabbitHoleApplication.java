@@ -1,4 +1,4 @@
-package com.jpalucki.rabbithole;
+package com.jpalucki.rabbithole.part1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
