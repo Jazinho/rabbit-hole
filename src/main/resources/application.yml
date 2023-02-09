@@ -1,0 +1,5 @@
+rabbit:
+    queues:
+        tut-1-queue-1:
+            name: 'tut-1-queue-1'
+
