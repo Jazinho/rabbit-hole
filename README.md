@@ -1,6 +1,8 @@
 # rabbit-hole
 Workspace for learning by experimenting with RabbitMQ messaging broker.
 
+I'm following tutorials from [official RabbitMQ web page](https://www.rabbitmq.com/tutorials/tutorial-one-spring-amqp.html).
+
 ## Setup
 Decided to use RabbitMQ server started in Docker container.
 To follow my setup please install Docker client locally and run:
@@ -14,6 +16,12 @@ To reach RabbitMQ server which is run inside container, used `127.0.0.1:5672` ad
 Besides `rabbit-server` (exposed on `5672` port) this specific Docker image brings also a management plugin installed and enabled by default.
 
 To access it, simply enter `127.0.0.1:15672` in your browser and use default `guest/guest` credentials.
+
+## :warning: Before you start :warning:
+
+Before you start running programs related to below Parts, please make sure that your RabbitMQ instance queues are empty and does not contain any old data.
+
+You can clean queue by going to management panel, then to section *Queues*, entering proper *queueName* and then at the bottom you have *Purge* sections where you can clear the queue from persisted messages.
 
 ## Part 1 solution - HelloWorld
 
