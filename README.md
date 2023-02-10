@@ -46,3 +46,13 @@ In Part 2 solution we created:
   * and then cycles repeats...
 * 1 queue
 * 3 receivers
+
+### Fact 1
+RabbitMQ has `DEFAULT_PREFETCH_SIZE` property set to **20**. This property sets a maximum number of messages that can be assigned to receiver. 
+After reaching this limit, messages won't be dispatching any new messages to this receiver until it get unloaded.
+Spring AMQP uses value **250**.
+
+### Fact 2
+
+In pure Java Rabbit MQ client (and others languages also) you always have to handle sending ACK or rejecting messages manually.
+In Spring AMQP it is handled by framework, under the hood.
