@@ -22,12 +22,25 @@ public class WorkloadSender {
   @Value("${rabbit.part-2.workload-range}")
   private int workloadRange;
 
-  AtomicInteger count = new AtomicInteger(0);
+  AtomicInteger count = new AtomicInteger(-1);
 
-  @Scheduled(fixedDelay = 3000, initialDelay = 500)
-  public void send() {
+  //  @Scheduled(fixedDelay = 3000, initialDelay = 500)
+  public void sendRandom() {
     int workload = ThreadLocalRandom.current().nextInt(workloadRange) + 1;
     String message = "Hello World" + ".".repeat(workload) + count.incrementAndGet();
+    template.convertAndSend(queue.getName(), message);
+    System.out.println(" [x] Sent '" + message + "' to queue '" + queue.getName() + "'");
+  }
+
+  /**
+    Running this method demonstrates equal load balancing by RabbitMQ.
+    It compares unACKed messages sent to every receiver and chooses next message receiver by the lowest number of messages.
+   */
+  @Scheduled(fixedDelay = 1000, initialDelay = 500)
+  public void sendPredefined() {
+    int countNum = count.incrementAndGet();
+    int workload = (countNum % 3) * 4 + 1;
+    String message = "Hello World" + ".".repeat(workload) + count;
     template.convertAndSend(queue.getName(), message);
     System.out.println(" [x] Sent '" + message + "' to queue '" + queue.getName() + "'");
   }
