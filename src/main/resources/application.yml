@@ -4,4 +4,6 @@ rabbit:
     part-2:
         workload-range: 10
         queue-name: 'part-2-queue-1'
+    part-3:
+        exchange-name: 'part-3-ex-1'
 
