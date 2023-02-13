@@ -19,8 +19,6 @@ To access it, simply enter `127.0.0.1:15672` in your browser and use default `gu
 
 ## :warning: Before you start :warning:
 
-****
-
 Before you start running programs related to below Parts, please make sure that your RabbitMQ instance queues are empty and does not contain any old data.
 
 You can clean queue by going to management panel, then to section *Queues*, entering proper *queueName* and then at the bottom you have *Purge* sections where you can clear the queue from persisted messages.
