@@ -78,3 +78,10 @@ If we don't bind any queue to an existing exchange, then the messages incoming t
 To send a message to the exchange we need to use `.convertAndSend(exchangeName, routingKey, message)` method. But as for fanout exchanges the routing key doesn't matter then we can use dummy empty string for 2nd param.
 
 :warning: To observe this solution fully, you have to monitor your exchange and queues LIVE, during program being started and traffic generated. After program stop, queues are deleted and messages purged. :warning:
+
+## Part 4 solution - Routing
+
+Nothing special learned in this section. Routing logic is very simple. Comparing to previous solution:
+- changed FanoutExchange to DirectExchange
+- added routing key to every message sent
+- enhanced bindings with routing key info

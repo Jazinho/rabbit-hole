@@ -6,4 +6,9 @@ rabbit:
         queue-name: 'part-2-queue-1'
     part-3:
         exchange-name: 'part-3-ex-1'
+    part-4:
+        exchange-name: 'part-4-ex-1'
+        warm-colors-queue-name: 'part-4-warm-colors-queue'
+        cold-colors-queue-name: 'part-4-cold-colors-queue'
+        neutral-colors-queue-name: 'part-4-neutral-colors-queue'
 
