@@ -111,3 +111,6 @@ Here we can see queues stats after leaving the emitter program to work:
 
 ...and also exchange stats:
 ![Queues stats](src/main/resources/exchange.png)
+
+Topic statistics show doubled frequency of message processing due to stats view not being refreshed constantly but with some delay.
+Stats show `0.0/s` and in the next cycle `19/s` (which is doubled frequency value).
