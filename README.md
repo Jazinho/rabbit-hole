@@ -106,5 +106,8 @@ When the message does not match to any of binding keys (e.g. routing key has 4 w
 
 In this solution we emit a random message every 100 milliseconds which routing key consist of message type (log/event), area (payments/mgmt/auth) and random identifier.
 
-Here we can see stats after leaving the emitter program to work:
+Here we can see queues stats after leaving the emitter program to work:
+![Queues stats](src/main/resources/queues.png)
 
+...and also exchange stats:
+![Queues stats](src/main/resources/exchange.png)
