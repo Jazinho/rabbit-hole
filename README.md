@@ -85,3 +85,26 @@ Nothing special learned in this section. Routing logic is very simple. Comparing
 - changed FanoutExchange to DirectExchange
 - added routing key to every message sent
 - enhanced bindings with routing key info
+
+## Part 5 solution - Topics
+
+Previous solution has rather limited routing possibilities - it allows only to route base on single criteria (exact routing_key match).
+
+To enable routing based on multiple criteria **topics** has been introduced. 
+Messages sent to a topic exchange can't have an arbitrary routing_key - it must be a list of words, delimited by dots. 
+The words can be anything, but usually they specify some features connected to the message. There can be as many words in the routing key as you like, up to the limit of 255 bytes.
+
+Bindings works similar but matching is done with additional handling of `wildcards`:
+- `*` (star) can substitute for exactly one word.
+- `#` (hash) can substitute for zero or more words.
+
+Specific cases are bindings which are configured with no special characters `*`/`#` (then it behaves as direct exchange) or bindings with only `#` (then it behaves like fanout exchange).
+
+When the message does not match to any of binding keys (e.g. routing key has 4 words instead of 3) then it is lost.
+
+****
+
+In this solution we emit a random message every 100 milliseconds which routing key consist of message type (log/event), area (payments/mgmt/auth) and random identifier.
+
+Here we can see stats after leaving the emitter program to work:
+

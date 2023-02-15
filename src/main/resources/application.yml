@@ -11,4 +11,11 @@ rabbit:
         warm-colors-queue-name: 'part-4-warm-colors-queue'
         cold-colors-queue-name: 'part-4-cold-colors-queue'
         neutral-colors-queue-name: 'part-4-neutral-colors-queue'
+    part-5:
+        topic-name: 'part-5-topic-1'
+        logs-queue-name: 'part-5-logs-queue'
+        events-queue-name: 'part-5-events-queue'
+        payments-queue-name: 'part-5-payments-queue'
+        mgmt-queue-name: 'part-5-mgmt-queue'
+        auth-queue-name: 'part-5-auth-queue'
 
