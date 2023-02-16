@@ -133,3 +133,14 @@ In this solution we create a `FunctionInputSender` which will randomly generate 
 Then it sends a message to a direct exchange which has 3 bindings to queues delegated to calculate a reuslt for each of those functions (Square Root, Logarithm and Fibonacci Value).
 
 In the end the result is sent back to the sender, and the calculation result is printed to the console.
+
+## Appendix - publish confirms
+
+Making sure published messages made it to the broker can be essential in some applications. `Publisher confirms` are a RabbitMQ feature that helps to meet this requirement. 
+
+Publisher confirms are asynchronous in nature but it is also possible to handle them synchronously. There is no definitive way to implement publisher confirms, this usually comes down to the constraints in the application and in the overall system.
+Typical techniques are:
+
+- publishing messages individually, waiting for the confirmation synchronously: simple, but very limited throughput.
+- publishing messages in batch, waiting for the confirmation synchronously for a batch: simple, reasonable throughput, but hard to reason about when something goes wrong.
+- asynchronous handling: best performance and use of resources, good control in case of error, but can be involved to implement correctly (requires sequential number tracking, sequential number matching and 2 callbacks definitions: for confirmed message and for NACK-ed message)
