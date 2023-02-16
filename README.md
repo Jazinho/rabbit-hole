@@ -114,3 +114,19 @@ Here we can see queues stats after leaving the emitter program to work:
 
 Topic statistics show doubled frequency of message processing due to stats view not being refreshed constantly but with some delay.
 Stats show `0.0/s` and in the next cycle `19/s` (which is doubled frequency value).
+
+## Part 6 solution - callbacks, RPC
+
+To implement RPC model, we can simply use `convertSendAndReceive` method of `RabbitTemplate` instead previously used `convertAndSend`.
+
+In pure RabbitMQ, on the client side, we have to specify a `callbackQueue` (a queue where the response will be sent to) and also a `correlationId` (identifier to match a received response to request sent). 
+Here, in this solution, SpringAMQP library handles both these aspects for us so we don't have to bother with correlationId matching and callbackQueue.
+SpringAMQP handles also situations where RPC server dies after returning result but before sending ACK. After server restart, when proper ACK will be sent, SpringAMQP will match it to the correct request.
+
+****
+
+In this solution we create a `FunctionInputSender` which will randomly generate a number from 0-9 range and one of three functions (sqrt/log/fib).
+
+Then it sends a message to a direct exchange which has 3 bindings to queues delegated to calculate a reuslt for each of those functions (Square Root, Logarithm and Fibonacci Value).
+
+In the end the result is sent back to the sender, and the calculation result is printed to the console.
