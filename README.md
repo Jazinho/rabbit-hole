@@ -29,6 +29,9 @@ When I created `Queue` bean then my RabbitMQ management panel displayed this que
 
 When I skipped `Queue` bean creation and used raw `template.convertAndSend(queueName, message)` method then RabbitMQ dashboard displayed incoming traffic but the traffic was like 'unrecognized' and not displayed in created queue statistics.
 
+For each connection to Rabbit's exchange or from Rabbit's queue there is a `channel` created.
+It is virtual connection from outside of Rabbit to its queues/exchanges/topics.
+
 ## Part 2 solution - Dispatching
 
 By default RabbitMQ uses **round-robin** technique of distributing load. It means every new message will be sent to the next receiver in order.
